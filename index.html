@@ -16,6 +16,47 @@
         console.log (userOption);
         console.log(typeof(userOption));
         let result;
+        switch (userOption) {
+            case "rock":
+                switch (computerOption) {
+                    case "rock": 
+                        result = "It's a tie!";
+                        break;
+                    case "paper":
+                        result = "You LOSE :(";
+                        break;
+                    case "scissors":
+                        result = "You WIN :)";
+                };
+                break;
+            case "paper":
+                switch (computerOption) {
+                    case "rock": 
+                        result = "You WIN :)";
+                        break;
+                    case "paper":
+                        result = "It's a tie!";
+                        break;
+                    case "scissors":
+                        result = "You LOSE :(";
+                };
+                break;
+            case "scissors":
+                switch (computerOption) {
+                    case "rock": 
+                        result = "You LOSE :(";
+                        break;
+                    case "paper":
+                        result = "You WIN :)";
+                        break;
+                    case "scissors":
+                        result = "It's a tie!";
+                };
+                break;
+            default: result = "Oops! Looks like there's a typo in your option, take anoher look."
+        }
+        console.log(result);
+        /* Version with nested if...else statements
         if (userOption==computerOption) {
             result = "It's a tie!"
         } else if (userOption=="rock") {
@@ -40,6 +81,8 @@
             result = "Oops! It looks like there a typo there, try again."
         }
         console.log(result);
+        */
+       
     </script>
 </body>
 </html>
