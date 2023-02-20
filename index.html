@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+    <script>
+        console.log("Hello, World!");
+        let options = ["rock", "paper", "scissors"];
+        let computerOption = options[Math.floor(Math.random() * options.length)];
+        console.log(computerOption);
+        let userOption = prompt ("What will it be? Rock? Paper? Scissors? Choose wisely!");
+        console.log (userOption);
+        console.log(typeof(userOption));
+        let result;
+        if (userOption==computerOption) {
+            result = "It's a tie!"
+        } else if (userOption=="rock") {
+            if (computerOption=="paper") {
+                result="You LOSE! :("
+            } else {
+                result="You WIN! :)"
+            }
+        } else if (userOption=="paper") {
+            if (computerOption=="scissors") {
+                result="You LOSE! :("
+            } else {
+                result="You WIN! :)"
+            }
+        } else if (userOption=="scissors") {
+            if (computerOption=="rock") {
+                result="You LOSE! :("
+            } else {
+                result="You WIN! :)"
+            }
+        }
+        console.log(result);
+    </script>
+</body>
+</html>
