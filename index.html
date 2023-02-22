@@ -1,88 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock Paper Scissors</title>
+    <title>Rock Paper Scissors Game</title>
 </head>
+
 <body>
     <script>
-        console.log("Hello, World!");
-        let options = ["rock", "paper", "scissors"];
-        let computerOption = options[Math.floor(Math.random() * options.length)];
-        console.log(computerOption);
-        let userOption = prompt ("What will it be? Rock? Paper? Scissors? Choose wisely!");
-        console.log (userOption);
-        console.log(typeof(userOption));
-        let result;
-        switch (userOption) {
-            case "rock":
-                switch (computerOption) {
-                    case "rock": 
-                        result = "It's a tie!";
-                        break;
-                    case "paper":
-                        result = "You LOSE :(";
-                        break;
-                    case "scissors":
-                        result = "You WIN :)";
-                };
-                break;
-            case "paper":
-                switch (computerOption) {
-                    case "rock": 
-                        result = "You WIN :)";
-                        break;
-                    case "paper":
-                        result = "It's a tie!";
-                        break;
-                    case "scissors":
-                        result = "You LOSE :(";
-                };
-                break;
-            case "scissors":
-                switch (computerOption) {
-                    case "rock": 
-                        result = "You LOSE :(";
-                        break;
-                    case "paper":
-                        result = "You WIN :)";
-                        break;
-                    case "scissors":
-                        result = "It's a tie!";
-                };
-                break;
-            default: result = "Oops! Looks like there's a typo in your option, take anoher look."
+
+        //function for generating a random option for the computer player
+        function getComputerChoice() {
+            let options = ["rock", "paper", "scissors"];
+            let computerOption = options[Math.floor(Math.random() * options.length)];
+            console.log(computerOption);
+            return computerOption;
         }
-        console.log(result);
-        /* Version with nested if...else statements
-        if (userOption==computerOption) {
-            result = "It's a tie!"
-        } else if (userOption=="rock") {
-            if (computerOption=="paper") {
-                result="You LOSE! :("
-            } else {
-                result="You WIN! :)"
-            }
-        } else if (userOption=="paper") {
-            if (computerOption=="scissors") {
-                result="You LOSE! :("
-            } else {
-                result="You WIN! :)"
-            }
-        } else if (userOption=="scissors") {
-            if (computerOption=="rock") {
-                result="You LOSE! :("
-            } else {
-                result="You WIN! :)"
-            }
-        } else {
-            result = "Oops! It looks like there a typo there, try again."
+
+        //function for getting input from the human player
+        function getPlayerChoice(){
+            let playerOption = prompt("What will it be? Rock? Paper? Scissors? Choose wisely!");
+            playerOption=playerOption.toLowerCase();
+            console.log(playerOption);
+            return playerOption;
         }
-        console.log(result);
-        */
-       
+        
+        //function for playing one round
+        function playRound (insertedPlayerOption, insertedComputerOption){
+            let result;
+            switch (insertedPlayerOption) {
+                case "rock":
+                    switch (insertedComputerOption) {
+                        case "rock":
+                            result = "It's a tie!";
+                            break;
+                        case "paper":
+                            result = "You LOSE :(";
+                            break;
+                        case "scissors":
+                            result = "You WIN :)";
+                    };
+                    break;
+                case "paper":
+                    switch (insertedComputerOption) {
+                        case "rock":
+                            result = "You WIN :)";
+                            break;
+                        case "paper":
+                            result = "It's a tie!";
+                            break;
+                        case "scissors":
+                            result = "You LOSE :(";
+                    };
+                    break;
+                case "scissors":
+                    switch (insertedComputerOption) {
+                        case "rock":
+                            result = "You LOSE :(";
+                            break;
+                        case "paper":
+                            result = "You WIN :)";
+                            break;
+                        case "scissors":
+                            result = "It's a tie!";
+                    };
+                    break;
+                default: result = "Oops! Looks like there's a typo in your option, take anoher look."
+            }
+            return result;
+        }
+
+        //function for playing a game with multiple rounds
+        function game(j){
+            let playerScore=0;
+            let computerScore=0;
+            for (i=0; i<j; i++) {
+                let computerOption = getComputerChoice();
+                let playerOption = getPlayerChoice();
+                let displayedResult =playRound (playerOption, computerOption);
+                console.log(displayedResult);
+                switch (displayedResult){
+                    case "You WIN :)":
+                        playerScore++;
+                        break;
+                    case "You LOSE :(":
+                        computerScore++;
+                        break;
+                    case "It's a tie!":
+                        break;
+                    case "Oops! Looks like there's a typo in your option, take anoher look.":
+                        i--;
+                }
+            }
+            console.log("Player score is " + playerScore);
+            console.log("Computer score is " + computerScore);
+            computeScore(playerScore, computerScore);
+        }
+
+        //function for comparing the player score vs computer score to see who won
+        function computeScore(playerResult,computerResult){
+            if (playerResult == computerResult) {
+                console.log("The whole game is a tie.");
+            } else if (playerResult > computerResult) {
+                console.log("You WON the GAME!");
+            } else {
+                console.log("You LOST the GAME...");
+            }
+        }
+
+        //play a game with multiple rounds, decided by the human player upfront
+        game(prompt("How many rounds would you like to play? Please insert a number"));
+
     </script>
 </body>
+
 </html>
